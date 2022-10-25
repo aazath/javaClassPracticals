@@ -6,3 +6,7 @@
 /DuckingEx.class
 /CClass.class
 /PClass.class
+/ATM.class
+/Bank.class
+/InvalidUserException.class
+/OwnException.class
