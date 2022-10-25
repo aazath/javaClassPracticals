@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class Alpha{
+class PClass{
 	public void division()throws ArithmeticException
 	{
 	
@@ -21,10 +21,10 @@ class Alpha{
 	}
 }
 
-class Beta{
+class CClass{
 	public void display()
 	{
-		Alpha a = new Alpha();
+		PClass a = new PClass();
 		a.division();
 		
 	}
@@ -36,7 +36,7 @@ public class DuckingEx {
 	public static void main(String[] args) {
 		try
 		{
-			Beta b = new Beta();
+			CClass b = new CClass();
 			b.display();
 		}
 		catch(ArithmeticException e)

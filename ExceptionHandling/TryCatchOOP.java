@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 class Alpha{
-	public void division()throws ArithmeticException
+	public void division()
 	{
 		try
 		{
@@ -19,7 +19,7 @@ class Alpha{
 		}
 		catch(ArithmeticException e)
 		{
-			System.out.println("Enter a non-zero second number");
+			System.out.println("Enter non-zero second number");
 		}
 		System.out.println("Thank you for using our application");
 	}
