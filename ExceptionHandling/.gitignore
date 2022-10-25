@@ -10,3 +10,8 @@
 /Bank.class
 /InvalidUserException.class
 /OwnException.class
+/Applicant.class
+/EMV.class
+/EMVApp.class
+/OverAgeException.class
+/UnderAgeException.class
