@@ -8,6 +8,7 @@ public class TryCatch {
 		
 		Scanner scan = new Scanner (System.in);
 		System.out.println("Welcome to AyaINN Application");
+		System.out.println("=============================");
 		System.out.println("Enter the first number to devide: ");
 		int first = scan.nextInt();
 		System.out.println("Enter the second number to devide: ");
