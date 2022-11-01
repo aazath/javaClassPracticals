@@ -1,3 +1,4 @@
+//Creating the custom thread by implementing the runnable interface
 class A implements Runnable
 {
 	public void run()
