@@ -2,50 +2,84 @@ class chainThreading extends Thread
 {
 	public void run()
 	{
-		try {
-			A();
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		String t =Thread.currentThread().getName();
+		if (t.equals("Bank")) {
+			Banking();
 		}
-		try {
-			B();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		else if(t.equals("Print"))
+		{
+			Printing();
 		}
-		try {
-			C();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		else
+		{
+			Calc();
 		}
 	}
 	
-	public void A() throws Exception
-	{
-		System.out.println("In the A method");
-		Thread.sleep(5000);
+	public void Banking() {
+		System.out.println("Banking Task Started...");
+		
+		for (int i = 0; i < 3; i++) {
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("Banking...");
+			
+		}
+		System.out.println("Banking completed....");
 	}
 	
-	public void B() throws Exception
-	{
-		System.out.println("In the B method");
-		Thread.sleep(5000);
+	public void Printing() {
+		System.out.println("Printing Task Started...");
+		
+		for (int i = 0; i < 3; i++) {
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("Printing...");
+			
+		}
+		System.out.println("Printing completed....");
 	}
-	public void C()throws Exception
-	{
-		System.out.println("In the C method");
-		Thread.sleep(5000);
+	
+	public void Calc() {
+		System.out.println("Calc Task Started...");
+		
+		for (int i = 0; i < 3; i++) {
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("Calc...");
+			
+		}
+		System.out.println("Calc completed....");
+		
 	}
 }
 public class ChainingMethod {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		chainThreading ct = new chainThreading();
-		ct.start();
-
+		chainThreading ct1 = new chainThreading();
+		chainThreading ct2 = new chainThreading();
+		chainThreading ct3 = new chainThreading();
+		
+		ct1.setName("Bank");
+		ct2.setName("Print");
+		ct3.setName("Calc");
+		
+		ct1.start();
+		ct2.start();
+		ct3.start();
 	}
 
 }
