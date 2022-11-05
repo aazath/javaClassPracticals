@@ -11,7 +11,7 @@ class AMC implements Runnable{
 		}
 		Thread.sleep(2000);
 		
-		//synchronized block to prevent the multi thread running
+		//Synchronised block to prevent the multi thread running
 		//alpabhets everytime will be printed in the order
 		synchronized(this)
 		{
