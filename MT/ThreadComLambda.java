@@ -6,7 +6,7 @@ public class ThreadComLambda {
 		// TODO Auto-generated method stub
 		
 		//Anonymous inner class
-		Thread thread = new Thread(new Runnable() {
+		new Thread(new Runnable() {
 			public void run()
 			{
 				for (int i = 1; i <= 5; i++) {
@@ -18,8 +18,7 @@ public class ThreadComLambda {
 					}
 				}
 			}
-		});
-		thread.start();
+		}).start();
 		
 		for (int i = 1; i <= 5; i++) {
 			try {
