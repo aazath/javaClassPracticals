@@ -16,6 +16,8 @@ class Producer extends Thread
 
 		@Override
 		public void run() {
+			//apply lock
+			synchronized(sb) {
 
 			for (int i = 1; i <= 10; i++) {
 				try {
@@ -27,9 +29,12 @@ class Producer extends Thread
 				}
 
 			}
+			//send the notification to the waiting thread
+			sb.notify();
+			}
 
 			// update the consumer once data produced
-			dataProvider = true;
+//			dataProvider = true;
 
 		}
 	
@@ -52,25 +57,40 @@ class Consumer extends Thread
 		@Override
 		public void run() {
 			
-			//check for the producer dataProvider for the dataProvider variable
-			//if true only consume the data otherwise enter into sleeping state
-			while(producer.dataProvider == false) {
+//			//check for the producer dataProvider for the dataProvider variable
+//			//if true only consume the data otherwise enter into sleeping state
+//			while(producer.dataProvider == false) {
+//				try {
+//					Thread.sleep(10);
+//				} catch (InterruptedException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//			
+//			//consume the data produced by the producer
+//			System.out.println(producer.sb);
+			
+			synchronized(producer.sb) {
 				try {
-					Thread.sleep(10);
+					//wait till the notification is sent by producer
+					producer.sb.wait();
+					
+					//consume the data produced by the producer
+					System.out.println(producer.sb);
 				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
 			}
-			
-			//consume the data produced by the producer
-			System.out.println(producer.sb);
 
 		}
 }
 
-////Inefficient way of inter-thread communication 
+//Efficient way of inter-thread communication using wait() and notify()
 public class ThreadComm {
 
+	//Driving code where he starts the other thread
 	public static void main(String[] args) {
 
 			Producer obj1 = new Producer();
