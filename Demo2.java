@@ -2,7 +2,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -92,6 +95,44 @@ public class Demo2 {
         System.out.println(rowCount + " rows. ");
         rows1.close();
 
+        System.out.println();
+        System.out.println("Stream rows from CSV file, parse data from rows :");
+        Stream<String> rows2 = Files.lines(Paths.get("data.txt"));
+        rows2   
+            .map(x -> x.split(","))
+            .filter(x -> x.length ==3)
+            .filter(x -> Integer.parseInt(x[1]) > 15)
+            .forEach(x -> System.out.println(x[0] + " " + x[1] + " " + x[2]));
+        rows2.close();
 
+        System.out.println();
+        System.out.println("Stream rows from CSV file, store fields in HashMap ");
+        Stream<String> rows3 = Files.lines(Paths.get("data.txt"));
+        Map<String, Integer> map = new HashMap<>();
+        map = rows3 
+            .map(x -> x.split(","))
+            .filter(x ->x.length ==3)
+            .filter(x-> Integer.parseInt(x[1])>15)
+            .collect(Collectors.toMap(
+                x ->x[0], 
+                x -> Integer.parseInt(x[1])));
+        rows3.close();
+        for(String key : map.keySet())
+        {
+            System.out.println(key + " " + map.get(key));
+        }
+
+        System.out.println();
+        System.out.println("Reduction - sum ");
+        double total = Stream.of(7.3, 1.5, 4.8)
+            .reduce(0.0, (Double a, Double b) -> a +b);
+        System.out.println("Total = "+total );
+
+
+        System.out.println();
+        System.out.println("Reducation - summary statistics ");
+        IntSummaryStatistics summary = IntStream.of(5, 10,7,8,3,9)
+            .summaryStatistics();
+        System.out.println(summary);
     }
 }
