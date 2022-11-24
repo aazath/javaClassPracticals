@@ -83,6 +83,8 @@ public class Demo2 {
         System.out.println();
         System.out.println("Streams rows from CSV file and count :");
         Stream<String> rows1 = Files.lines(Paths.get("data.txt"));
+        // System.out.println("Contents of the file :");
+        // rows1.forEach(System.out::println);
         int rowCount = (int) rows1
             .map(s -> s.split(","))
             .filter(s -> s.length == 3)
